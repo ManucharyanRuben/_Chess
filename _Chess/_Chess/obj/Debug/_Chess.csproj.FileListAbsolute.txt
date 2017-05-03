@@ -1,0 +1,9 @@
+E:\GitHub\_Chess\_Chess\_Chess\bin\Debug\_Chess.exe.config
+E:\GitHub\_Chess\_Chess\_Chess\bin\Debug\_Chess.exe
+E:\GitHub\_Chess\_Chess\_Chess\bin\Debug\_Chess.pdb
+E:\GitHub\_Chess\_Chess\_Chess\obj\Debug\_Chess.csprojResolveAssemblyReference.cache
+E:\GitHub\_Chess\_Chess\_Chess\obj\Debug\_Chess.Chess.resources
+E:\GitHub\_Chess\_Chess\_Chess\obj\Debug\_Chess.Properties.Resources.resources
+E:\GitHub\_Chess\_Chess\_Chess\obj\Debug\_Chess.csproj.GenerateResource.Cache
+E:\GitHub\_Chess\_Chess\_Chess\obj\Debug\_Chess.exe
+E:\GitHub\_Chess\_Chess\_Chess\obj\Debug\_Chess.pdb
