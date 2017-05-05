@@ -182,140 +182,54 @@ namespace _Chess
             else
             {
                 return false;
-               
+
             }
         }
 
         private bool CanMoveOnTheBoard(int x, int y, int x1, int y1)
         {
+            
 
-            bool canIMove = true;
-
-
-            if (y1 == y)
+            if (figures[x, y] is Knight)
             {
-
-                if (x > x1)
-                {
-                    for (int i = x1 + 1; i < x; i++)
-                    {
-                        if (figures[i, y] != null)
-                        {
-                            canIMove = false;
-                        }
-                    }
-                }
-                else
-                {
-                    for (int i = x + 1; i < x1; i++)
-                    {
-                        if (figures[i, y] != null)
-                        {
-                            canIMove = false;
-                        }
-                    }
-                }
-
-
-            }
-            else if (x1 == x)
-            {
-                if (y > y1)
-                {
-                    for (int i = y1 + 1; i < y; i++)
-                    {
-                        if (figures[x, i] != null)
-                        {
-                            canIMove = false;
-                        }
-                    }
-                }
-                else
-                {
-                    for (int i = y + 1; i < y1; i++)
-                    {
-                        if (figures[x, i] != null)
-                        {
-                            canIMove = false;
-                        }
-                    }
-                }
-            }
-            else if (Math.Abs(x - x1) == Math.Abs(y - y1))
-            {
-
-                if (x > x1 && y < y1)
-                {
-                    int j = y1 - 1;
-                    for (int i = x1 + 1; i < x; i++)
-                    {
-                        if (figures[i, j] != null)
-                        {
-                            canIMove = false;
-                        }
-                        j--;
-                    }
-
-                }
-                else if (x > x1 && y > y1)
-                {
-                    int j = y1 + 1;
-                    for (int i = x1 + 1; i < x; i++)
-                    {
-                        if (figures[i, j] != null)
-                        {
-                            canIMove = false;
-                        }
-                        j++;
-
-                    }
-                }
-                else if (x < x1 && y < y1)
-                {
-                    int j = y + 1;
-                    for (int i = x + 1; i < x1; i++)
-                    {
-                        if (figures[i, j] != null)
-                        {
-                            canIMove = false;
-                        }
-                        j++;
-                    }
-                }
-                else if (x < x1 && y > y1)
-                {
-                    int j = y - 1;
-                    for (int i = x + 1; i < x1; i++)
-                    {
-                        if (figures[i, j] != null)
-                        {
-                            canIMove = false;
-                        }
-                        j--;
-                    }
-                }
+                return true;
             }
 
-            return canIMove;
+            int x2 = Math.Sign(x1 - x);
+            int y2 = Math.Sign(y1 - y);
 
-            //int xS = Math.Sign(x1 - x);
-            //int yS = Math.Sign(y1 - y);
-            //bool f = true;
-            //int sum = 0;
-            //while ((x != x1 && y != y1)|| (x < x1 && y > y1) || (x > x1 && y < y1) || (x > x1 && y > y1) || (x < x1 && y < y1))
-            //{
-            //    x += xS;
-            //    y += yS;
-            //    if (figures[x, y] != null)
-            //    {
-            //            f = false;
-            //            break;
-            //     }
+            x += x2;
+            y += y2;
 
+            while (x != x1 || y != y1)
+            {
+                if ((x != x1 || y != y1) && figures[x, y] != null)
+                {
+                    return false;
+                }
+                x += x2;
+                y += y2;
+            }
 
-            //}
-
-            //return f;
+            return true;
         }
+
+        //private bool IsChack(int x, int y)
+        //{
+        //    for (int i = 0; i < 8; i++)
+        //    {
+        //        for (int j = 0; j < 8; j++)
+        //        {
+        //            if (figures[i, j] != null && !(figures[i, j] is King) && figures[i, j].Color != whoseTurn)
+        //            {
+        //                if (CanMoveOnTheBoard(i, j, x, y))
+        //                {
+        //                    return false;
+        //                }
+        //            }
+        //        }
+        //    }
+        //    return true;
+        //}
     }
 }
