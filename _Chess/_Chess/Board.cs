@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace _Chess
 {
-    public class Board
+    public partial class Board
     {
         public readonly IFigure[,] figures = new IFigure[8, 8];
         private static Board instance;
@@ -72,6 +73,11 @@ namespace _Chess
             figures[6, 6] = new Pawn("white");
             figures[6, 7] = new Pawn("white");
             #endregion
+
+            whiteKingX = 7;
+            whiteKingY = 4;
+            blackKingX = 0;
+            blackKingY = 4;
         }
 
 
@@ -173,7 +179,7 @@ namespace _Chess
 
         private bool FigureMove(int x, int y, int x1, int y1)
         {
-            if (CanFigureMove(x, y, x1, y1) && CanMoveOnTheBoard(x, y, x1, y1))
+            if (CanFigureMove(x, y, x1, y1) && CanMoveOnTheBoard(x, y, x1, y1, figures) && IsNotCheck(x, y, x1, y1))
             {
                 figures[x1, y1] = figures[x, y];
                 figures[x, y] = null;
@@ -186,9 +192,9 @@ namespace _Chess
             }
         }
 
-        private bool CanMoveOnTheBoard(int x, int y, int x1, int y1)
+        private bool CanMoveOnTheBoard(int x, int y, int x1, int y1, IFigure[,] figuresParam)
         {
-            
+
 
             if (figures[x, y] is Knight)
             {
@@ -203,7 +209,7 @@ namespace _Chess
 
             while (x != x1 || y != y1)
             {
-                if ((x != x1 || y != y1) && figures[x, y] != null)
+                if ((x != x1 || y != y1) && figuresParam[x, y] != null)
                 {
                     return false;
                 }
@@ -213,23 +219,5 @@ namespace _Chess
 
             return true;
         }
-
-        //private bool IsChack(int x, int y)
-        //{
-        //    for (int i = 0; i < 8; i++)
-        //    {
-        //        for (int j = 0; j < 8; j++)
-        //        {
-        //            if (figures[i, j] != null && !(figures[i, j] is King) && figures[i, j].Color != whoseTurn)
-        //            {
-        //                if (CanMoveOnTheBoard(i, j, x, y))
-        //                {
-        //                    return false;
-        //                }
-        //            }
-        //        }
-        //    }
-        //    return true;
-        //}
     }
 }

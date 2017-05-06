@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Configuration;
 using System.Text;
 
 namespace _Chess
@@ -11,12 +12,29 @@ namespace _Chess
 
         public override bool CanMove(int x, int y, int x1, int y1)
         {
-            return isFirstMove(x, y, x1, y1);
+            return isMoving(x, y, x1, y1) || IsEating(x, y, x1, y1);
         }
 
 
-        private bool isFirstMove(int x, int y, int x1, int y1)
+
+        public bool IsEating(int x, int y, int x1, int y1, IFigure[,] figures)
         {
+            if (figures[x1, y1] != null)
+            {
+                if ( y1 != y  && Math.Abs(y - y1) < 2 && Math.Abs(x - x1) < 2)
+                {
+                    if ((Color == "white" && x > x1) || (Color == "black" && x < x1))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        private bool IsEating(int x, int y, int x1, int y1)
+        {
+
             if (Board.Instance.figures[x1, y1] != null)
             {
                 if (Board.Instance.figures[x1, y1].Color != this.Color && y1 != y && Math.Abs(y - y1) < 2 && Math.Abs(x - x1) < 2)
@@ -26,13 +44,15 @@ namespace _Chess
                         return true;
                     }
                 }
-                else
-                {
-                    return false;
-                }
             }
+            return false;
+        }
 
-            if (Board.Instance.figures[x1,y]!=null)
+        private bool isMoving(int x, int y, int x1, int y1)
+        {
+
+
+            if (Board.Instance.figures[x1, y] != null)
             {
                 return false;
             }
