@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace _Chess
@@ -11,7 +12,7 @@ namespace _Chess
         public readonly IFigure[,] figures = new IFigure[8, 8];
         private static Board instance;
 
-        private string whoseTurn = "white";
+        private string whoseTurn="white";
         public bool FirstStep { get; private set; } = true;
         public int FirstX { get; private set; }
         public int FirstY { get; private set; }
@@ -36,6 +37,7 @@ namespace _Chess
 
         private Board()
         {
+            
             #region Created figures
             figures[0, 0] = new Rook("black");
             figures[0, 1] = new Knight("black");
@@ -194,8 +196,6 @@ namespace _Chess
 
         private bool CanMoveOnTheBoard(int x, int y, int x1, int y1, IFigure[,] figuresParam)
         {
-
-
             if (figures[x, y] is Knight)
             {
                 return true;

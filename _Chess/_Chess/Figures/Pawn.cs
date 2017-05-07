@@ -63,6 +63,10 @@ namespace _Chess
                 {
                     s = 2;
                 }
+                else
+                {
+                    s = 1;
+                }
 
                 if ((x < x1 || y > y1 || y < y1) || x - x1 > s)
                 {
@@ -74,6 +78,10 @@ namespace _Chess
                 if (x == 1)
                 {
                     s = 2;
+                }
+                else
+                {
+                    s = 1;
                 }
 
                 if ((x > x1 || y > y1 || y < y1) || x1 - x > s)

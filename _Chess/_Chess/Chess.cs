@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,7 +16,6 @@ namespace _Chess
     {
 
         private bool firstStep;
-
 
         public Chess()
         {
@@ -81,17 +81,19 @@ namespace _Chess
 
         private void ChangeCubeColor(int i, int j, DrawType drawType = DrawType.Null)
         {
+            label1.Text = Board.Instance.whiteKingX + " " + Board.Instance.whiteKingY;
+            label2.Text = Board.Instance.blackKingX + " " + Board.Instance.blackKingY;
             //ResetColors();
             if (drawType == DrawType.EnableColor)
             {
-                picArrays[i, j].BackColor = Color.Aqua;
+                picArrays[i, j].BackColor = Color.Aquamarine;
             }
             else if (drawType == DrawType.SameColor)
             {
-                picArrays[Board.Instance.FirstX, Board.Instance.FirstY].BackColor = Color.Aqua;
+                picArrays[Board.Instance.FirstX, Board.Instance.FirstY].BackColor = Color.Aquamarine;
                 ChangeCubeColor(Board.Instance.ReserveFirstX, Board.Instance.ReserveFirstY);
             }
-            else 
+            else
             {
                 picArrays[i, j].BackColor = (i + j) % 2 == 0 ? Color.Wheat : Color.SaddleBrown;
             }
